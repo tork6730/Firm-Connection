@@ -1,0 +1,71 @@
+<div id="documentsView">
+
+<h1>Message Board</h1>
+
+<span ng-show="currentUser">
+
+Welcome {{currentUser.username}}
+
+</span>
+    <span ng-hide="currentUser">
+    <P></P>
+    <h4>Latest Messages</h4>
+    <div>
+        <table class="table table-inverse">
+            <tr>
+                <th>Client Name</th>
+                <th>Title</th>
+                <th>Message</th>
+            </tr>
+            <tr ng-repeat="message in vm.messages">
+                <td>{{message.createdBy}}</td>
+                <td>{{message.title}}</td>
+                <td>{{message.bodyDescription}}</td>
+            </tr>
+        </table>
+    </div>
+    </span>
+<p></p>
+    <h4>Send Message</h4>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.2.1/css/bootstrap-markdown.min.css">
+
+
+    <script src="http://toopay.github.io/bootstrap-markdown/js/markdown.js"></script>
+    <script src="http://toopay.github.io/bootstrap-markdown/js/to-markdown.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-markdown/2.2.1/js/bootstrap-markdown.js"></script>
+
+
+    <div class="container">
+        <div class="row">
+
+            <form>
+                <input class="form-control" name="title" ng-model="vm.title" type="text" placeholder="Title:" /><p></p>
+                <textarea name="content" ng-model="vm.bodyDescription" data-provide="markdown" rows="10">
+#Heading ONE
+
+- this is heading two
+- and heding three
+
+> quote here
+
+
+    </textarea><p></p>
+                <input class="form-control" name="name" ng-model="vm.createdBy" type="text" placeholder="Your Name:" />
+                <label>Send to: </label>
+                <select class="form-control" ng-model="vm.attorney" ng-options="a for a in vm.attorneyList"></select>
+
+                <label>Practice Area</label>
+                <select class="form-control" ng-model="vm.practiceArea" ng-options="p for p in vm.practiceAreaList"></select>
+                <hr/>
+                <button id="submit" type="button" class="btn btn-md" ng-click="vm.addMessage()">Submit</button>
+            </form>
+
+
+        </div>
+
+    </div>
+
+
